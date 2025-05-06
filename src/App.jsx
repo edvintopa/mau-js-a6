@@ -23,8 +23,13 @@ function App() {
 
   return (
     <Container>
-      <MovieInput addMovie={addMovie} />
-      <MovieTable movies={movies} deleteMovie={deleteMovie} />
+      <h1>Movie R8RR</h1>
+      <p>Welcome, please enter your favourite movies and give them a rating.</p>
+
+      <Container className="mt-5">
+        <MovieInput addMovie={addMovie} />
+        <MovieTable movies={movies} deleteMovie={deleteMovie} />
+      </Container>
     </Container>
   )
 }
