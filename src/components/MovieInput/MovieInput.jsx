@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 
-function MovieInput() {
+function MovieInput({ addMovie }) {
   const [title, setTitle] = useState('');
   const [rating, setRating] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
@@ -21,7 +21,7 @@ function MovieInput() {
     }
 
     // Valid input, proceed with entry
-    console.log({ title, rating });
+    addMovie(title, rating);
 
     // Show success indicator for 1 sec
     setIsSuccess(true);
