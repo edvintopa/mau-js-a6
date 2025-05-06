@@ -1,7 +1,40 @@
+import { useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 function MovieTable({ movies, deleteMovie }) {
+  const [sortField, setSortField] = useState("title");
+  const [direction, setDirection] = useState(true); // TRUE = descending, FALSE = ascending
+  const [arrowDirection, setArrowDirection] = useState("down");
+
+  const handleSortClick = (field) => {
+    if (field === sortField) {
+      // If the same field has been clicked, toggle it's direction.
+      setDirection(!direction);
+      if(arrowDirection == "down") { setArrowDirection("up"); }
+      else { setArrowDirection("down"); }
+
+    } else {
+      // If new field, update to sort by that field.
+      setSortField(field);
+    }
+  };
+
+  const sortedMovies = [...movies].sort((a, b) => {
+    if (sortField == "title") {
+      if(direction) {
+        return a[sortField].localeCompare(b[sortField]);
+      } else {
+        return b[sortField].localeCompare(a[sortField]);
+      }
+    } else {
+      if (direction) {
+        return Number(b.rating) - Number(a.rating);
+      } else {
+        return Number(a.rating) - Number(b.rating);
+      }
+    }
+  })
 
   const renderRating = (rating) => {
     return (
@@ -25,13 +58,21 @@ function MovieTable({ movies, deleteMovie }) {
     <Table hover responsive>
       <thead>
         <tr>
-          <th>Title</th>
-          <th className="text-end">Rating</th>
+          <th onClick={() => handleSortClick("title")} style={{ cursor: 'pointer' }}>
+            Title {sortField === "title" && (
+              <i className={"bi bi-arrow-" + arrowDirection}></i>
+            )}
+          </th>
+          <th className="text-end" onClick={() => handleSortClick("rating")} style={{ cursor: 'pointer' }}>
+            Rating {sortField === "rating" && (
+              <i className={"bi bi-arrow-" + arrowDirection}></i>
+            )}
+          </th>
           <th className="text-end"></th>
         </tr>
       </thead>
       <tbody>
-        {movies.map((movie) => (
+        {sortedMovies.map((movie) => (
           <tr key={movie.id}>
             <td>{movie.title}</td>
             <td className="text-end">{renderRating(movie.rating)}</td>
