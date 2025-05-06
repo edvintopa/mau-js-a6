@@ -35,9 +35,9 @@ function MovieInput({ addMovie }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row className="align-items-center">
-        <Col>
+    <Form onSubmit={handleSubmit} className="mb-3">
+      <Row className="align-items-end">
+        <Col xs={12} md={5} className="mb-2 mb-md-0">
           <Form.Group>
             <Form.Label>Movie Title</Form.Label>
             <Form.Control 
@@ -49,7 +49,7 @@ function MovieInput({ addMovie }) {
           </Form.Group>
         </Col>
         
-        <Col>
+        <Col xs={12} md={4} className="mb-2 mb-md-0">
           <Form.Group>
             <Form.Label>Rating</Form.Label>
             <Form.Select 
@@ -66,13 +66,13 @@ function MovieInput({ addMovie }) {
           </Form.Group>
         </Col>
         
-        <Col className="d-flex align-items-end">
+        <Col xs={12} md={3} className="mb-2 mb-md-0">
           <Button 
             type="submit" 
             variant={isSuccess ? "success" : "primary"} 
-            className="mt-3"
+            className="mt-3 w-100"
           >
-            {isSuccess ? "Success!" : "Add Movie"}
+            {isSuccess ? "Success" : "Add Movie"}
           </Button>
         </Col>
       </Row>
