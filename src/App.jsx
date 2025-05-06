@@ -13,13 +13,18 @@ function App() {
   }, [movies]);
 
   const addMovie = (title, rating) => {
-    setMovies([...movies, {title, rating}]);
+    let id = Date.now();  // Unique id based on date
+    setMovies([...movies, {id, title, rating}]);  // Append movie
+  };
+
+  const deleteMovie = (id) => {
+    setMovies(movies.filter(movie => movie.id !== id)); // Keep all movies that don't match the id
   };
 
   return (
     <Container>
       <MovieInput addMovie={addMovie} />
-      <MovieTable movies={movies} />
+      <MovieTable movies={movies} deleteMovie={deleteMovie} />
     </Container>
   )
 }

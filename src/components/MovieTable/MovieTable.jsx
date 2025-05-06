@@ -1,6 +1,6 @@
-import { Table } from 'react-bootstrap'
+import { Button, Table } from 'react-bootstrap'
 
-function MovieTable({ movies }) {
+function MovieTable({ movies, deleteMovie }) {
   return (
     <>
       <Table hover>
@@ -16,7 +16,12 @@ function MovieTable({ movies }) {
             <tr key={movie.id}>
               <td>{movie.title}</td>
               <td>{movie.rating}</td>
-              <td>X</td>
+              <td>
+                <Button
+                variant='danger'
+                onClick={() => deleteMovie(movie.id)}
+                >Delete</Button>
+              </td>
             </tr>
           ))}
         </tbody>
