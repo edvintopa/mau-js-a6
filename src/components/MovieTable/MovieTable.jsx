@@ -82,8 +82,7 @@ function MovieTable({ movies, deleteMovie }) {
                 size="sm"
                 onClick={() => deleteMovie(movie.id)}
               >
-                <i className="bi bi-trash"></i>
-                <span className="d-none d-md-inline ms-1">Delete</span>
+                <i className="bi bi-x"></i>
               </Button>
             </td>
           </tr>
